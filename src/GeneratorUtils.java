@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.PriorityQueue;
 import java.util.Queue;
+import java.util.Random;
 import java.util.Stack;
 
 public class GeneratorUtils {
@@ -68,8 +69,10 @@ public class GeneratorUtils {
 				}
 			}
 			if(neighbors.size()>0){
+				int size = neighbors.size();
+				Random r = new Random();
 				stack.push(current);
-				current = neighbors.remove((int)(Math.random()*neighbors.size()));			
+				current = neighbors.remove((neighbors.size()>3) ? 3 :    (int)(Math.random()*size));			
 				current.setState(" ");				
 				current.visited=true;
 			}
@@ -175,7 +178,7 @@ public class GeneratorUtils {
 			node.setState(".");
 			count++;
 		}	
-		System.out.println(count + " moves");
+		System.out.println(count + " moves to solve");
 	}
 	
 	public static int heuristic(Node a, Node b){

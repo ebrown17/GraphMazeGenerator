@@ -3,8 +3,8 @@ import java.util.Random;
 
 public class Main {
 	
-	static int row = 30;
-	static int column = 90;
+	static int row = 15;
+	static int column = 30;
 	static ArrayList<Node> nodes;
 	
 	public static void main(String args[]){		
@@ -30,7 +30,7 @@ public class Main {
 		
 		long endTime = System.nanoTime();		
 		long totalTime = (endTime-startTime)/1000;
-		System.out.println((totalTime));
+		System.out.println((totalTime) + " ms to solve");
 		
 		
 		printLevel();
