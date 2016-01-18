@@ -1,15 +1,26 @@
 import java.util.ArrayList;
 import java.util.Random;
 
+import graphUtil.GraphNode;
+import maze.RecursiveMaze;
+import solvers.AStar;
+
 public class Main {
 	
 	static int row = 15;
-	static int column = 30;
-	static ArrayList<Node> nodes;
+	static int column = 90;
+	static ArrayList<GraphNode> maze;
 	
 	public static void main(String args[]){		
 		
-		nodes = GeneratorUtils.generateNodeList(row, column);		
+		maze = new AStar(new RecursiveMaze(row,column).getMaze(),false).getMaze();		
+		printLevel(maze);
+		maze = new AStar(new RecursiveMaze(row,column).getMaze(),false).getMaze();		
+		printLevel(maze);
+		maze = new AStar(new RecursiveMaze(row,column).getMaze(),false).getMaze();		
+		printLevel(maze);
+		
+		/*nodes = GeneratorUtils.generateNodeList(row, column);		
 		
 		GeneratorUtils.setEdgeNodes(row,column,nodes);
 		
@@ -33,12 +44,12 @@ public class Main {
 		System.out.println((totalTime) + " ms to solve");
 		
 		
-		printLevel();
+		printLevel();*/
 	}
 	
-	public static void printLevel(){
+	public static void printLevel(ArrayList<GraphNode> maze){
 		int count =1;
-		for(Node node: nodes){			
+		for(GraphNode node: maze){			
 			System.out.print(node.getState() + "");
 			if(count % column == 0) System.out.println("");
 			count++;
