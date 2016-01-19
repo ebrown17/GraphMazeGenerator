@@ -63,8 +63,9 @@ public class RecursiveMaze {
 		
 		ArrayList<GraphNode> neighbors;
 		
-		GraphNode current = unVisited.remove(COLUMNS+1);
-		current.start=true;		
+		GraphNode current = unVisited.remove((int)(Math.random()*unVisited.size()));
+		current.start=true;	
+		
 		current.cost=0;
 		current.visited=true;
 		while(unVisited.size()>0){

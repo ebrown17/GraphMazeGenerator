@@ -9,13 +9,11 @@ import graphUtil.GraphNode;
 
 public class AStar {
 	
-	private ArrayList<GraphNode> maze;
-	private boolean statistics;
+	private ArrayList<GraphNode> maze;	
 	private GraphNode start,end;
 	
-	public AStar(ArrayList<GraphNode> maze, boolean statisics){
+	public AStar(ArrayList<GraphNode> maze){
 		this.maze=maze;
-		this.statistics=statisics;
 		setStartEndNodes();
 		aStarSearch();
 	}
