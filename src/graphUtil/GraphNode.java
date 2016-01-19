@@ -3,19 +3,17 @@ package graphUtil;
 import java.util.ArrayList;
 
 public class GraphNode implements Comparable<GraphNode> {
-	final String FILL= "I";
-	final String PATH= "0";
-	final String CLEAR= " ";
-	final String START= "S";
-	final String END= "X";
+	static final String FILL= "I";
+	static final String PATH= "o";
+	static final String CLEAR= " ";
+	static final String START= "S";
+	static final String END= "X";	
 	
 	final public int x, y;
 	final public int index;
 	public boolean filled=false,visited=false,start=false,end=false,path=false;
-	public int cost =1000, priority=0;
-	private String state = " ";
-	private ArrayList<GraphNode> edges = new ArrayList<GraphNode>();
-	
+	public int cost =1000, priority=0;	
+	private ArrayList<GraphNode> edges = new ArrayList<GraphNode>();	
 	
 	public GraphNode(int x, int y, int index){
 		this.x=x;
@@ -27,12 +25,7 @@ public class GraphNode implements Comparable<GraphNode> {
 	
 	public String toString(){
 		return x + " " + y;
-	}
-	
-	public void setState(String c){
-		if(!c.equals(FILL)); filled = false;
-		state = c;
-	}
+	}	
 	
 	public String getState(){
 		if(start){return START;}
@@ -41,7 +34,7 @@ public class GraphNode implements Comparable<GraphNode> {
 		else if (path){return PATH;}
 		else {return CLEAR;}
 		
-	}
+	}	
 	
 	public void addEdge(GraphNode node){
 		edges.add(node);
@@ -56,8 +49,5 @@ public class GraphNode implements Comparable<GraphNode> {
 		if(priority < o.priority) return -1;
 		if(priority> o.priority) return 1;
 		else return 0;
-	}
-	
-	
-	
+	}	
 }
