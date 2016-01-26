@@ -12,7 +12,7 @@ public class GraphNode implements Comparable<GraphNode> {
 	final public int x, y;
 	final public int index;
 	public boolean filled=false,visited=false,start=false,end=false,path=false;
-	public int cost =1000, priority=0;	
+	public Integer cost =Integer.MAX_VALUE/2, priority=0;	
 	private ArrayList<GraphNode> edges = new ArrayList<GraphNode>();	
 	
 	public GraphNode(int x, int y, int index){

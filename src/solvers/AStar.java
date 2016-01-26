@@ -38,7 +38,7 @@ public class AStar {
 		costSoFar.put(start, 0);
 		
 		GraphNode current = null;		
-		int cost =0;
+		Integer cost =0;
 		
 		while(!frontier.isEmpty()){			
 			
@@ -68,7 +68,7 @@ public class AStar {
 		System.out.println(count + " moves to solve");
 	}
 	
-	private int heuristic(GraphNode a, GraphNode b){
+	private Integer heuristic(GraphNode a, GraphNode b){
 		return (Math.abs(a.x - b.x) + Math.abs(a.y-b.y));
 	}
 	
