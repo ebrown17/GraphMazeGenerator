@@ -11,7 +11,7 @@ public class GraphNode implements Comparable<GraphNode> {
 	
 	final public int x, y;
 	final public int index;
-	public boolean filled=false,visited=false,start=false,end=false,path=false;
+	public boolean filled=true,visited=false,start=false,end=false,path=false;
 	public Integer cost =Integer.MAX_VALUE/2, priority=0;	
 	private ArrayList<GraphNode> edges = new ArrayList<GraphNode>();	
 	
@@ -19,8 +19,7 @@ public class GraphNode implements Comparable<GraphNode> {
 		this.x=x;
 		this.y=y;
 		this.index = index;
-		this.filled=true;
-		this.visited=false;
+		
 	}
 	
 	public String toString(){
@@ -43,6 +42,8 @@ public class GraphNode implements Comparable<GraphNode> {
 	public ArrayList<GraphNode> getEdges(){		
 		return edges.size()>0 ? edges : null;
 	}
+	
+	
 	
 	@Override
 	public int compareTo(GraphNode o) {
