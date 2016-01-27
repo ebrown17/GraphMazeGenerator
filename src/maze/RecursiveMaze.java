@@ -7,12 +7,7 @@ import graphUtil.GraphNode;
 
 
 
-public class RecursiveMaze {
-	
-	private static final int[][] DIRS = {{1,0},{0,1},{-1,0},{0,-1}};
-	private final int ROWS,COLUMNS;
-	
-	private ArrayList<GraphNode> nodeList  = new ArrayList<GraphNode>();	
+public class RecursiveMaze extends Maze{		
 	
 	/**
 	 * 
@@ -20,38 +15,12 @@ public class RecursiveMaze {
 	 * @param columns number of columns a maze will have
 	 */
 	
+	private GraphNode start,end;
+	
 	public RecursiveMaze(int rows, int columns){
-		this.ROWS=rows;
-		this.COLUMNS=columns;
-		generateNodeList();
-		setEdgeNodes();
+		super(rows,columns);
 		generateRecursiveMaze();
-	}
-	
-	public ArrayList<GraphNode> getMaze(){
-		return nodeList;
-	}
-	
-	private void generateNodeList(){		
-		for(int x=0;x<ROWS;x++){
-			for(int y=0;y<COLUMNS;y++){
-				int index = (x*COLUMNS)+y;
-				nodeList.add(new GraphNode(x,y,index));								
-			}
-		}		
-	}
-	
-	private void setEdgeNodes(){
-		for(GraphNode node: nodeList){		
-			for(int[] dir: DIRS){			
-				int nX = node.x + dir[0];
-				int nY =node.y + dir[1];
-				int index = (nX*COLUMNS)+nY;
-				if(nX < 0 || nY <0 || nX >= ROWS || nY >= COLUMNS )continue;			
-				node.addEdge(nodeList.get(index));			
-			}
-		}
-	}
+	}	
 	
 	private void generateRecursiveMaze(){
 		Stack<GraphNode> stack = new Stack<GraphNode>();
@@ -65,7 +34,7 @@ public class RecursiveMaze {
 		
 		GraphNode current = unVisited.remove(COLUMNS+1);
 		current.start=true;	
-		
+		start=current;
 		current.cost=0;
 		current.visited=true;
 		while(unVisited.size()>0){
@@ -103,9 +72,19 @@ public class RecursiveMaze {
 			if(unVisited.size()<=0){				
 				current.end=true;
 				current.cost=0;
-				current.visited=true;				
+				current.visited=true;
+				
+				end=current;
 			}
 		}
 	}
+	
+	public GraphNode getStart(){
+		return start;
+	}
+	
+	public GraphNode endStart(){
+		return end;
+	} 
 
 }
