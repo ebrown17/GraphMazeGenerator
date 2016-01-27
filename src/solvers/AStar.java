@@ -9,11 +9,12 @@ import graphUtil.GraphNode;
 
 public class AStar {
 	
-	private ArrayList<GraphNode> maze;	
+	private ArrayList<GraphNode> maze;
+	private ArrayList<GraphNode> path = new ArrayList<GraphNode>();
 	private GraphNode start,end;
 	
-	public AStar(ArrayList<GraphNode> maze){
-		this.maze=maze;
+	public AStar(ArrayList<GraphNode> maze){		
+		this.maze= maze;		
 		setStartEndNodes();
 		aStarSearch();
 	}
@@ -31,7 +32,7 @@ public class AStar {
 		Queue<GraphNode> frontier = new PriorityQueue<GraphNode>();
 		HashMap<GraphNode,GraphNode> cameFrom = new HashMap<GraphNode,GraphNode>();
 		HashMap<GraphNode,Integer> costSoFar = new HashMap<GraphNode,Integer>();		
-		ArrayList<GraphNode> path = new ArrayList<GraphNode>();
+		
 		
 		frontier.add(start);		
 		cameFrom.put(start, start);		
@@ -54,7 +55,7 @@ public class AStar {
 				}				
 			}				
 		}		
-		
+		path.add(current);
 		while(current != start) {			
 			current = cameFrom.get(current);		
 			path.add(current);			
@@ -72,8 +73,8 @@ public class AStar {
 		return (Math.abs(a.x - b.x) + Math.abs(a.y-b.y));
 	}
 	
-	public ArrayList<GraphNode> getMaze(){
-		return maze;
+	public ArrayList<GraphNode> getPath(){
+		return path;
 	}
 	
 }
