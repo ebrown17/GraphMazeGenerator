@@ -12,7 +12,7 @@ import solvers.AStar;
 
 public class Main {
 	
-	private static final int TILESIZE = 5;
+	private static final int TILESIZE = 25;
 	private static final int WIDTH = 800;
 	private static final int HEIGHT = 800;
 	

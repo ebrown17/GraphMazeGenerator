@@ -42,9 +42,33 @@ public class Base extends JFrame implements Runnable  {
     	});
     	
         surface.addMouseListener(new MouseAdapter() {
-    		 public void mouseClicked(MouseEvent e) {    			 
-    			   			 
-    			 Vector2d newEnd = new Vector2d(e.getX()/tileSize,e.getY()/tileSize);
+   		 public void mouseClicked(MouseEvent e) {    			 
+			 if(e.getButton()== MouseEvent.BUTTON3) {
+				 Vector2d pos = new Vector2d(e.getX()/tileSize,e.getY()/tileSize);
+				 for(GridNode node: level.getNodeList()){
+					 if(node.postion.sameVector(pos)){
+						 if( node.tile== TileType.WALL) {
+							 node.tile= TileType.CLEAR; 
+						 }
+						 else {
+							 node.tile= TileType.WALL;
+						 }
+						 
+						 path = AStar.aStarSearch(level.getStart(),level.getEnd());
+						 if(null != path){
+    	    				 surface.clearPath();  		
+    	    				 surface.addPath(path);
+    	    			 }
+						 else{
+							 node.tile= node.tile== TileType.WALL ? TileType.CLEAR : TileType.WALL;
+						 }
+    					 break;
+					 }
+					 
+				 }
+			 }
+			 if(e.getButton()== MouseEvent.BUTTON1) {
+				 Vector2d newEnd = new Vector2d(e.getX()/tileSize,e.getY()/tileSize);
     			 Vector2d oldEnd = new Vector2d(level.end.postion);    			
     			 
     			 for(GridNode node: level.getNodeList()){
@@ -63,9 +87,11 @@ public class Base extends JFrame implements Runnable  {
     					 }
     				 }
     			 }
-    			 
-    		    }
-    	});
+			 }
+			
+			 
+		    }
+	});
     	
     	add(surface);
     	

@@ -97,6 +97,7 @@ public class Surface extends JPanel {
 	
 	private void drawPath(){
 		Graphics2D g2d =(Graphics2D) getGraphics();
+		paintAll(g2d);
 		 for(Vector2d point : path){
 	        	g2d.setColor(Color.cyan);
 				g2d.fillRect((point.x*tileSize), (point.y*tileSize),tileSize,tileSize);
