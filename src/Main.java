@@ -21,10 +21,8 @@ public class Main {
 	static RecursiveMaze test;
 	static ArrayList<Vector2d> path;
 	static Base base;
-	public static void main(String args[]){
+	public static void main(String args[]){		
 		
-		/*while(true){
-			path =null;*/
 			while(null == path){ 
 				test = new RecursiveMaze(row,column); 
 				path = AStar.aStarSearch(test.getStart(),test.getEnd());		 
@@ -32,8 +30,7 @@ public class Main {
 		 
 		 SwingUtilities.invokeLater(new Runnable() {
 				public void run() {
-					base = new Base(TILESIZE,WIDTH,HEIGHT,test);
-					
+					base = new Base(TILESIZE,WIDTH,HEIGHT,test);					
 					base.pack();               
 					base.getContentPane().setPreferredSize(new Dimension(WIDTH,HEIGHT));
 					base.setTitle("Practice");
@@ -43,21 +40,9 @@ public class Main {
 					base.setResizable(true);
 					base.setVisible(true);
 					base.addPath(path);
-					//base.addPath(path.getPath());
-					//base = new Base(TILESIZE,WIDTH,HEIGHT,path.getPath());
-					
 				}
-			});	
-		 
-		
-		/* try {
-			Thread.sleep(2000);
-			base.dispose();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		}*/
+			});			 
+	
 	}
 	
 	public static void printLevel(ArrayList<GridNode> maze){

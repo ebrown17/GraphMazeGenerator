@@ -52,16 +52,17 @@ public class Base extends JFrame implements Runnable  {
 						 }
 						 else {
 							 node.tile= TileType.WALL;
-						 }
-						 
-						 path = AStar.aStarSearch(level.getStart(),level.getEnd());
-						 if(null != path){
-    	    				 surface.clearPath();  		
-    	    				 surface.addPath(path);
+						 }						 
+						 path = AStar.aStarSearch(level.getStart(),level.getEnd());						 
+						 if(null != path){							 
+    	    				 surface.clearPath(); 
+    	    				 surface.updateTile(node.postion,node.tile.color);
+    	    				 surface.addPath(path);    	    				 
     	    			 }
 						 else{
-							 node.tile= node.tile== TileType.WALL ? TileType.CLEAR : TileType.WALL;
+							 node.tile= node.tile== TileType.WALL ? TileType.CLEAR : TileType.WALL;							 
 						 }
+						
     					 break;
 					 }
 					 
@@ -87,14 +88,10 @@ public class Base extends JFrame implements Runnable  {
     					 }
     				 }
     			 }
-			 }
-			
-			 
-		    }
-	});
-    	
-    	add(surface);
-    	
+			 }	
+   		 }
+        });    	
+    	add(surface);    	
     }
     
     public void addPath(ArrayList<Vector2d> path){
