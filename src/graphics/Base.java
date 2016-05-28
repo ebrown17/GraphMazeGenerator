@@ -43,22 +43,27 @@ public class Base extends JFrame implements Runnable  {
     	
         surface.addMouseListener(new MouseAdapter() {
     		 public void mouseClicked(MouseEvent e) {    			 
-    			 surface.clearPath();    			 
+    			   			 
     			 Vector2d newEnd = new Vector2d(e.getX()/tileSize,e.getY()/tileSize);
-    			 Vector2d oldEnd = new Vector2d(level.end.postion);
-    			 level.end.tile=TileType.CLEAR;
+    			 Vector2d oldEnd = new Vector2d(level.end.postion);    			
+    			 
     			 for(GridNode node: level.getNodeList()){
     				 if(node.postion.sameVector(newEnd)){
-    					 node.tile=TileType.END;
-    					 level.end=node;
-    					 
-    					 break;
+    					 if(node.tile != TileType.WALL){
+	    	    			 path = AStar.aStarSearch(level.getStart(),node);
+	    	    			 if(null != path){
+	    	    				 surface.clearPath();
+	    	    				 level.end.tile=TileType.CLEAR;
+		    					 node.tile=TileType.END;
+		    					 level.end=node;
+		    					 surface.moveEnd(oldEnd, newEnd);	    	    				
+	    	    				 surface.addPath(path);
+	    	    			 }	    	    			
+	    					 break;
+    					 }
     				 }
     			 }
-    			 surface.moveEnd(oldEnd, newEnd);
-    			 path = AStar.aStarSearch(level.getStart(),level.getEnd());
     			 
-    			 surface.addPath(path);
     		    }
     	});
     	
