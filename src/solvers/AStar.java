@@ -41,7 +41,7 @@ public class AStar {
 				cost = 1+ costSoFar.get(current);
 				if(!costSoFar.containsKey(next) || cost < costSoFar.get(next)){
 					costSoFar.put(next, cost);
-					next.priority= cost + heuristic(next.postion,end.postion)+next.cost;
+					next.priority= cost + heuristic(next.postion,end.postion);
 					frontier.add(next);
 					cameFrom.put(next, current);
 					
